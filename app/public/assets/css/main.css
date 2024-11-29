@@ -130,6 +130,7 @@ input {
     font-size: 16px;
     padding: 8px 15px;
     width: 100%;
+    min-width: 300px;
     transition: all 0.3s ease;
     box-shadow: inset 2px 2px 4px #1e1e1e, inset -2px -2px 4px #3a3a3a;
 }
@@ -147,14 +148,12 @@ input:hover {
     box-shadow: 0 0 8px rgba(255, 255, 255, 0.3);
 }
 
-/* Focus effect */
 input:focus {
     outline: none;
     border-color: #888;
-    box-shadow: 0 0 10px rgba(255, 255, 255, 0.5); /* Glowing effect */
+    box-shadow: 0 0 10px rgba(255, 255, 255, 0.5);
 }
 
-/* Active (while typing) state */
 input:active {
-    box-shadow: inset 2px 2px 4px #000; /* Inner shadow for pressed effect */
+    box-shadow: inset 2px 2px 4px #000;
 }
