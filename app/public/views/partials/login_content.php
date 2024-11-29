@@ -4,21 +4,21 @@
             <!-- Email Field -->
             <div class="form-group w-75">
                 <label for="exampleInputEmail1">Email address</label>
-                <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter email">
+                <input type="email" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter email">
             </div>
             <!-- Password Field -->
             <div class="form-group w-75">
                 <label for="exampleInputPassword1">Password</label>
-                <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Password">
+                <input type="password" id="exampleInputPassword1" placeholder="Password">
             </div>
             <!-- Submit Button -->
             <div class="text-container w-50">
-                <button type="submit" class="btn btn-primary w-100">Submit</button>
+                <button type="submit" >Submit</button>
             </div>
             <!-- Forgot Password and Create Account -->
             <div class="w-30 d-flex justify-content-between">
-                <button type="button" class="btn btn-link">Forgot Password?</button>
-                <button type="button" class="btn btn-link">Create New Account</button>
+                <button type="button">Forgot Password?</button>
+                <button type="button">Create New Account</button>
             </div>
         </form>
     </div>
