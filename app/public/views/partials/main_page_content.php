@@ -1,5 +1,3 @@
-<?php
-?>
 <main class="flex-fill">
     <h1>Main page</h1>
 
@@ -11,5 +9,4 @@
     ?>
 
     <a href="../../includes/logout.php">Logout</a>
-
 </main>
