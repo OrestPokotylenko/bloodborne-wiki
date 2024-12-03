@@ -1,4 +1,5 @@
 <nav class="navbar">
+<nav class="navbar">
     <div class="container-fluid">
         <a class="navbar-brand" href="/">
             <header class="d-flex align-items-center justify-content-center" style="height: 60px;">
