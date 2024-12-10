@@ -1,8 +1,5 @@
 {
     "require": {
         "google/apiclient": "^2.18"
-    },
-    "config": {
-        "vendor-dir": "app/public/vendor"
     }
 }
