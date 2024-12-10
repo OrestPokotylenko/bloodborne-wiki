@@ -10,5 +10,9 @@
 .form-container {
     padding: 2rem;
     width: 20%;
-    height: 500px;
+    height: 40%;
+}
+
+.login {
+    height: 85%;
 }

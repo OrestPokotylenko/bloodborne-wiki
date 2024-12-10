@@ -58,6 +58,22 @@ class UserController
         $this->userModel->getUser($this->username, $this->password);
     }
 
+    public function handleGoogleLogin($googleId, $email, $name)
+    {
+        $user = $this->userModel->getUserByGoogleIdOrEmail($googleId, $email);
+
+        if (!$user) {
+            // Create new user
+            $this->userModel->createUserWithGoogle($name, $email, $googleId);
+
+            // Retrieve the new user
+            $user = $this->userModel->getUserByGoogleIdOrEmail($googleId, $email);
+        }
+
+        // Return UserDTO
+        return $user;
+    }
+
     private function emptyLoginValidation(): bool {
         if (empty($this->username) || empty($this->password)) {
             return false;
