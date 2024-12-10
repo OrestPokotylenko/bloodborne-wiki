@@ -82,4 +82,25 @@ class UserModel extends BaseModel
 
         $stmt = null;
     }
+
+    public function getUserByGoogleIdOrEmail($googleId, $email)
+    {
+        $stmt = $this->pdo->prepare('SELECT * FROM users WHERE google_id = ? OR email = ?;');
+        $stmt->execute([$googleId, $email]);
+        $userData = $stmt->fetch();
+
+        if ($userData) {
+            return new UserDTO($userData["user_id"], $userData["username"], $userData["email"], $userData["role"]);
+        }
+
+        return null;
+    }
+
+    public function createUserWithGoogle($username, $email, $googleId)
+    {
+        $stmt = $this->pdo->prepare('INSERT INTO users (username, email, google_id, role) VALUES (?, ?, ?, ?);');
+        $role = 'user';
+
+        $stmt->execute([$username, $email, $googleId, $role]);
+    }
 }
