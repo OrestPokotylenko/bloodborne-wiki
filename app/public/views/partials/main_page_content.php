@@ -7,6 +7,4 @@
         echo "Logged in as: " . $username;
     }
     ?>
-
-    <a href="../../includes/logout.php">Logout</a>
 </main>

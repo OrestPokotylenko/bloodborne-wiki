@@ -1,6 +1,10 @@
 <?php
-session_start();
+
+if (session_status() === PHP_SESSION_NONE) {
+    session_start();
+}
+
 session_unset();
 session_destroy();
-header("Location: /"); // Redirect to the login page or home page
+header("Location: /");
 exit();
