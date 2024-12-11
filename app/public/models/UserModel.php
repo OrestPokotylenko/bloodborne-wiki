@@ -79,6 +79,7 @@ class UserModel extends BaseModel
         session_start();
         $_SESSION["userid"] = $user->userId;
         $_SESSION["username"] = $user->username;
+        $_SESSION["email"] = $user->email;
 
         $stmt = null;
     }

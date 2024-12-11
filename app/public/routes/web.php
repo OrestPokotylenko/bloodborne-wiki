@@ -9,5 +9,5 @@ Route::add('/login', function () {
 });
 
 Route::add('/logout', function () {
-    require(__DIR__ . "/../views/pages/logout.php");
+    require(__DIR__ . "/../includes/logout.php");
 });
