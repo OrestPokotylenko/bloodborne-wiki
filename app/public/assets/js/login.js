@@ -16,7 +16,7 @@ document.addEventListener('DOMContentLoaded', () => {
 });
 
 function getApiKey() {
-    return fetch('includes/config.php') // Adjust the path to your backend endpoint
+    return fetch('includes/config.php')
         .then((response) => {
             if (!response.ok) {
                 throw new Error('Failed to load configuration');
@@ -25,14 +25,14 @@ function getApiKey() {
         })
         .then((data) => {
             if (data.googleApiKey) {
-                return data.googleApiKey; // Return the API key
+                return data.googleApiKey;
             } else {
                 throw new Error('API key not found in response');
             }
         })
         .catch((error) => {
             console.error('Error fetching API key:', error);
-            throw error; // Re-throw the error for handling by the caller
+            throw error;
         });
 }
 
@@ -40,7 +40,7 @@ document.addEventListener('DOMContentLoaded', () => {
     getApiKey()
         .then((apiKey) => {
             google.accounts.id.initialize({
-                client_id: apiKey, // Replace with your actual Client ID
+                client_id: apiKey,
                 callback: handleCredentialResponse,
             });
 
@@ -55,7 +55,6 @@ document.addEventListener('DOMContentLoaded', () => {
 });
 
 function handleCredentialResponse(response) {
-    // Send the credential to the server
     fetch('includes/google-login.php', {
         method: 'POST',
         headers: {
@@ -66,11 +65,9 @@ function handleCredentialResponse(response) {
         .then(res => res.json())
         .then(data => {
             if (data.success) {
-                // Redirect to the homepage after successful login
                 window.location.href = '/';
             } else {
                 console.error('Authentication failed:', data.message);
-                // Optionally display an error message to the user
             }
         })
         .catch(error => {

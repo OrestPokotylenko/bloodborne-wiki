@@ -63,14 +63,10 @@ class UserController
         $user = $this->userModel->getUserByGoogleIdOrEmail($googleId, $email);
 
         if (!$user) {
-            // Create new user
             $this->userModel->createUserWithGoogle($name, $email, $googleId);
-
-            // Retrieve the new user
             $user = $this->userModel->getUserByGoogleIdOrEmail($googleId, $email);
         }
 
-        // Return UserDTO
         return $user;
     }
 

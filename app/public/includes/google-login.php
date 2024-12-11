@@ -1,11 +1,9 @@
 <?php
 
-require_once __DIR__ . '/../vendor/autoload.php';
+require_once __DIR__ . '/../controllers/GoogleAuthorizator.php';
 require_once __DIR__ . '/../controllers/UserController.php';
 require_once __DIR__ . '/../models/UserModel.php';
 require_once __DIR__ . '/../dto/UserDTO.php';
-
-use Google\Client;
 
 header('Content-Type: application/json');
 
@@ -21,26 +19,25 @@ try {
         throw new Exception('Credential not found');
     }
 
-    $client = new Client(['client_id' => getenv('GOOGLE_API_KEY')]); // Replace with your Client ID
-    $payload = $client->verifyIdToken($data['credential']);
+    $googleAuthorizator = new GoogleAuthorizator();
+    $payload = $googleAuthorizator->validateToken($data['credential']);
 
-    if ($payload) {
-        $googleId = $payload['sub'];
-        $email = $payload['email'];
-        $name = $payload['name'] ?? 'Google User';
-
-        $userController = new UserController(null, null);
-        $user = $userController->handleGoogleLogin($googleId, $email, $name);
-
-        // Set session variables
-        $_SESSION['userid'] = $user->userId;
-        $_SESSION['username'] = $user->username;
-        $_SESSION['email'] = $user->email;
-
-        echo json_encode(['success' => true]);
-    } else {
+    if (!$payload) {
         throw new Exception('Invalid ID token');
     }
+
+    $googleId = $payload['id'];
+    $email = $payload['email'];
+    $name = $payload['name'];
+
+    $userController = new UserController(null, null);
+    $user = $userController->handleGoogleLogin($googleId, $email, $name);
+
+    $_SESSION['userid'] = $user->userId;
+    $_SESSION['username'] = $user->username;
+    $_SESSION['email'] = $user->email;
+
+    echo json_encode(['success' => true]);
 } catch (Exception $e) {
     http_response_code(401);
     echo json_encode(['success' => false, 'message' => $e->getMessage()]);
