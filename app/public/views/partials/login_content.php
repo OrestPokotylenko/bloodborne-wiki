@@ -43,3 +43,6 @@
         </form>
     </div>
 </div>
+
+<script src="https://accounts.google.com/gsi/client" async defer></script>
+<script src="../../assets/js/login.js"></script>
