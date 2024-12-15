@@ -65,7 +65,11 @@ function handleCredentialResponse(response) {
         .then(res => res.json())
         .then(data => {
             if (data.success) {
-                window.location.href = '/';
+                if (data.requires2FA) {
+                    window.location.href = data.redirectUrl;
+                } else {
+                    window.location.href = '/';
+                }
             } else {
                 console.error('Authentication failed:', data.message);
             }

@@ -1,6 +1,7 @@
 <?php
 
 require_once __DIR__ . '/../controllers/GoogleAuthorizator.php';
+require_once __DIR__ . '/../controllers/TwoFactorAuth.php';
 require_once __DIR__ . '/../controllers/UserController.php';
 require_once __DIR__ . '/../models/UserModel.php';
 require_once __DIR__ . '/../dto/UserDTO.php';
@@ -33,10 +34,16 @@ try {
     $userController = new UserController(null, null);
     $user = $userController->handleGoogleLogin($googleId, $email, $name);
 
-    $_SESSION['userid'] = $user->userId;
-    $_SESSION['username'] = $user->username;
-    $_SESSION['email'] = $user->email;
+    $_SESSION['user'] = $user;
 
+    if ($user->twoFA) {
+        $twoFA = new TwoFactorAuth();
+        $sent = $twoFA->send2FACode($_SESSION['user']->email);
+        echo json_encode(['success' => true, 'requires2FA' => true, 'redirectUrl' => '/two-factor-login']);
+        exit();
+    }
+
+    $_SESSION['isLoggedIn'] = true;
     echo json_encode(['success' => true]);
 } catch (Exception $e) {
     http_response_code(401);

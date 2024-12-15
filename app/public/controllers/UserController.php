@@ -1,6 +1,7 @@
 <?php
 
 require_once __DIR__ . '/../models/UserModel.php';
+require_once __DIR__ . '/../dto/UserDTO.php';
 
 class UserController
 {
@@ -55,7 +56,7 @@ class UserController
             exit();
         }
 
-        $this->userModel->getUser($this->username, $this->password);
+        return $this->userModel->getUser($this->username, $this->password);
     }
 
     public function handleGoogleLogin($googleId, $email, $name)
