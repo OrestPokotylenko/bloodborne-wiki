@@ -10,6 +10,9 @@ document.addEventListener("DOMContentLoaded", function () {
         if (href === currentPage) {
             link.classList.add("clicked");
         }
+        else if (currentPage === "/two-factor-login" && href === "/login") {
+            link.classList.add("clicked");
+        }
     });
 });
 

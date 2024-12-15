@@ -2,9 +2,10 @@
     <h1>Main page</h1>
 
     <?php
-    if (isset($_SESSION['username'])) {
-        $username = $_SESSION['username'];
-        echo "Logged in as: " . $username;
+    if (isset($_SESSION['isLoggedIn']) && $_SESSION['isLoggedIn'] === true) {
+        $user = $_SESSION['user'];
+        echo "Logged in as: " . $user->username;
     }
     ?>
+
 </main>

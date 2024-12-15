@@ -21,12 +21,12 @@ class UserModel extends BaseModel
         return true;
     }
 
-    public function setUser($email, $username, $password) {
-        $stmt = $this->pdo->prepare('INSERT INTO users (username, email, password, role) VALUES (?, ?, ?, ?);');
+    public function setUser($email, $username, $password, $twoFA = false) {
+        $stmt = $this->pdo->prepare('INSERT INTO users (username, email, password, role, twoFA) VALUES (?, ?, ?, ?, ?);');
         $hashedPassword = password_hash($password, PASSWORD_DEFAULT);
         $role = 'user';
 
-        if (!$stmt->execute([$username, $email, $hashedPassword, $role])) {
+        if (!$stmt->execute([$username, $email, $hashedPassword, $role, $twoFA])) {
             $stmt = null;
             header("location: /?error=stmtfailed");
             exit();
@@ -74,14 +74,9 @@ class UserModel extends BaseModel
         }
 
         $fetchedData = $stmt->fetchAll(PDO::FETCH_ASSOC);
-        $user = new UserDTO($fetchedData[0]["user_id"], $fetchedData[0]["username"], $fetchedData[0]["email"], $fetchedData[0]["role"]);
-
-        session_start();
-        $_SESSION["userid"] = $user->userId;
-        $_SESSION["username"] = $user->username;
-        $_SESSION["email"] = $user->email;
-
         $stmt = null;
+
+        return new UserDTO($fetchedData[0]["user_id"], $fetchedData[0]["username"], $fetchedData[0]["email"], $fetchedData[0]["role"], $fetchedData[0]["twoFA"]);
     }
 
     public function getUserByGoogleIdOrEmail($googleId, $email)
@@ -91,17 +86,17 @@ class UserModel extends BaseModel
         $userData = $stmt->fetch();
 
         if ($userData) {
-            return new UserDTO($userData["user_id"], $userData["username"], $userData["email"], $userData["role"]);
+            return new UserDTO($userData["user_id"], $userData["username"], $userData["email"], $userData["role"], $userData["twoFA"], $userData["google_id"]);
         }
 
         return null;
     }
 
-    public function createUserWithGoogle($username, $email, $googleId)
+    public function createUserWithGoogle($username, $email, $googleId, $twoFA = false)
     {
-        $stmt = $this->pdo->prepare('INSERT INTO users (username, email, google_id, role) VALUES (?, ?, ?, ?);');
+        $stmt = $this->pdo->prepare('INSERT INTO users (username, email, google_id, role, twoFA) VALUES (?, ?, ?, ?, ?);');
         $role = 'user';
 
-        $stmt->execute([$username, $email, $googleId, $role]);
+        $stmt->execute([$username, $email, $googleId, $role, $twoFA]);
     }
 }

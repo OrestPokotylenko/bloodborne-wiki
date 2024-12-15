@@ -5,8 +5,8 @@
  */
 require_once(__DIR__ . "/lib/env.php");
 require_once(__DIR__ . "/lib/error_reporting.php");
+require_once __DIR__ . '/dto/UserDTO.php';
 
-//session_destroy();
 session_start();
 /**
  * Require routing library

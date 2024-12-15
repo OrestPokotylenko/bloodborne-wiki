@@ -7,3 +7,7 @@ $_ENV["DB_PASSWORD"] = "secret123";
 $_ENV["DB_CHARSET"] = "utf8mb4";
 $_ENV["ENV"] = "LOCAL";
 $_ENV["GOOGLE_API_KEY"] = "626578377161-n5jfq2vargf4hg1f2a69r3kmjvnegvj6.apps.googleusercontent.com";
+$_ENV["MAIL_HOST"] = "smtp.gmail.com";
+$_ENV["MAIL_PORT"] = "587";
+$_ENV["MAIL_USERNAME"] = "testsender302@gmail.com";
+$_ENV["MAIL_PASSWORD"] = "tdbg hldx dakp dylq";
