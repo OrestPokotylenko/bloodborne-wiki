@@ -1,22 +1,22 @@
 document.addEventListener('DOMContentLoaded', () => {
     const loginForm = document.getElementById('loginForm');
     const signUpForm = document.getElementById('signUpForm');
-    const signUpButton = document.getElementById('signUpButton');
-    const loginButton = document.getElementById('loginButton');
+    const showSignUpButton = document.getElementById('showSignUpButton');
+    const showLoginButton = document.getElementById('showLoginButton');
 
-    signUpButton.addEventListener('click', () => {
+    showSignUpButton.addEventListener('click', () => {
         loginForm.classList.add('d-none');
         signUpForm.classList.remove('d-none');
     });
 
-    loginButton.addEventListener('click', () => {
+    showLoginButton.addEventListener('click', () => {
         signUpForm.classList.add('d-none');
         loginForm.classList.remove('d-none');
     });
 });
 
-function getApiKey() {
-    return fetch('includes/config.php')
+async function getApiKey() {
+    return await fetch('includes/config.php')
         .then((response) => {
             if (!response.ok) {
                 throw new Error('Failed to load configuration');
@@ -54,8 +54,8 @@ document.addEventListener('DOMContentLoaded', () => {
         });
 });
 
-function handleCredentialResponse(response) {
-    fetch('includes/google-login.php', {
+async function handleCredentialResponse(response) {
+    await fetch('includes/google-login.php', {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json',

@@ -21,7 +21,7 @@ class UserModel extends BaseModel
         return true;
     }
 
-    public function setUser($email, $username, $password, $twoFA = false) {
+    public function setUser($email, $username, $password, $twoFA = 0) {
         $stmt = $this->pdo->prepare('INSERT INTO users (username, email, password, role, twoFA) VALUES (?, ?, ?, ?, ?);');
         $hashedPassword = password_hash($password, PASSWORD_DEFAULT);
         $role = 'user';
