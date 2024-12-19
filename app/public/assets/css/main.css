@@ -121,7 +121,7 @@ button:active {
     box-shadow: inset 2px 2px 4px #000;
 }
 
-input {
+input, .footer-input {
     background-color: #2b2b2b;
     color: #c9c9c9;
     border: 2px solid #444;
@@ -130,9 +130,12 @@ input {
     font-size: 16px;
     padding: 8px 15px;
     width: 100%;
-    min-width: 300px;
     transition: all 0.3s ease;
     box-shadow: inset 2px 2px 4px #1e1e1e, inset -2px -2px 4px #3a3a3a;
+}
+
+.footer-input {
+    min-width: 300px;
 }
 
 input::placeholder {
