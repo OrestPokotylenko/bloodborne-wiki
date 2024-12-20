@@ -26,6 +26,13 @@ document.addEventListener("DOMContentLoaded", () => {
         sidebarTogle.classList.remove("d-none");
     });
 
+    async function getThreads() {
+        await fetch("/api/get-threads")
+            .then(response => response.json())
+            .then(data => console.log(data))
+            .catch(error => console.error('Error:', error));
+    }
+
     async function getReplies(threadId) {
         await fetch(`/api/get-replies?threadId=${threadId}`)
             .then(response => response.json())
@@ -35,7 +42,8 @@ document.addEventListener("DOMContentLoaded", () => {
 
     // Populate threads
     function loadThreads() {
-        getReplies(threadId);
+        //getReplies(threadId);
+        getThreads();
         threadList.innerHTML = "";
         threads.forEach((thread, index) => {
             const li = document.createElement("li");

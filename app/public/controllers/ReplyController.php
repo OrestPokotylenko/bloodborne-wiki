@@ -2,6 +2,7 @@
 
 require_once(__DIR__ . "/../dto/ReplyDTO.php");
 require_once(__DIR__ . "/../models/ReplyModel.php");
+require_once(__DIR__ . "/TimeController.php");
 
 class ReplyController {
 
@@ -19,7 +20,7 @@ class ReplyController {
         $replies = $this->replyModel->getReplies($threadId);
         $replyDTOs = array();
         foreach ($replies as $reply) {
-            $replyDTO = new ReplyDTO($reply['thread_id'], $reply['user_id'], $reply['reply_text'], $reply['reply_id'], $this->getTimeByTimeZone($reply['reply_date']));
+            $replyDTO = new ReplyDTO($reply['thread_id'], $reply['user_id'], $reply['reply_text'], $reply['reply_id'], TimeController::getTimeByTimeZone($reply['reply_date']));
             array_push($replyDTOs, $replyDTO);
         }
 
@@ -29,12 +30,5 @@ class ReplyController {
     public function addReply($threadId, $userId, $content) {
         $reply = new ReplyDTO($threadId, $userId, $content);
         $this->replyModel->addReply($reply);
-    }
-
-    private function getTimeByTimeZone(string $time): DateTime {
-        $dateTime = new DateTime($time);
-        $userTimeZone = new DateTimeZone($_SESSION['timezone']);
-        $dateTime->setTimezone($userTimeZone);
-        return $dateTime;
     }
 }
