@@ -1,3 +1,27 @@
+document.addEventListener('DOMContentLoaded', () => {
+    const userTimezone = Intl.DateTimeFormat().resolvedOptions().timeZone;
+
+    fetch('includes/session/session-timezone.php', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ timezone: userTimezone }),
+    })
+    .then((response) => {
+        if (!response.ok) {
+            throw new Error('Failed to send timezone');
+        }
+        return response.json();
+    })
+    .then((data) => {
+        console.log('Server response:', data);
+    })
+    .catch((error) => {
+        console.error('Error:', error);
+    });
+});
+
 const isMobile = window.matchMedia("(max-width: 768px)").matches;
 
 document.addEventListener("DOMContentLoaded", function () {
@@ -32,7 +56,7 @@ if (isMobile) {
 }
 
 document.addEventListener('DOMContentLoaded', () => {
-    fetch('api-endpoints/session-endpoint.php')
+    fetch('includes/session/session-loggedin.php')
         .then((response) => response.json())
         .then((data) => {
             const loginButton = document.getElementById('loginButton');

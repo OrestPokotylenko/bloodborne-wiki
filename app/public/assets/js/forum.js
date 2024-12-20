@@ -14,6 +14,7 @@ document.addEventListener("DOMContentLoaded", () => {
         { name: "Bloodborne Tips", messages: ["Share your best strategies here!"] }
     ];
 
+    const threadId = 1;
     // Toggle sidebar visibility
     menuToggle.addEventListener("click", () => {
         sidebarOpen.classList.remove("d-none");
@@ -25,8 +26,16 @@ document.addEventListener("DOMContentLoaded", () => {
         sidebarTogle.classList.remove("d-none");
     });
 
+    async function getReplies(threadId) {
+        await fetch(`/api/get-replies?threadId=${threadId}`)
+            .then(response => response.json())
+            .then(data => console.log(data))
+            .catch(error => console.error('Error:', error));
+    }
+
     // Populate threads
     function loadThreads() {
+        getReplies(threadId);
         threadList.innerHTML = "";
         threads.forEach((thread, index) => {
             const li = document.createElement("li");
