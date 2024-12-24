@@ -7,3 +7,7 @@ Route::add('/api/get-replies', function () {
 Route::add('/api/get-threads', function () {
     require(__DIR__ . "/../api-endpoints/get-threads-endpoint.php");
 });
+
+Route::add('/api/post-reply', function () {
+    require(__DIR__ . "/../api-endpoints/post-reply-endpoint.php");
+}, 'post');

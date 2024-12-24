@@ -13,7 +13,7 @@ if (isset($_GET['threadId'])) {
 
         echo json_encode(['success' => true, 'data' => $replies]);
     } catch (Exception $e) {
-        http_response_code(400);
+        http_response_code(400); 
         echo json_encode(['success' => false, 'message' => $e->getMessage()]);
     }
 } else {
