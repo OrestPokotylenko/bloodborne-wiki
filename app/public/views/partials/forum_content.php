@@ -8,7 +8,7 @@
             <div class="flex-grow-1">
                 <button id="menuClose" class="close-button">X</button>
                 <div class="search-bar">
-                    <input type="text" placeholder="Search threads..." />
+                    <input type="text" id="searchbar" placeholder="Search threads..." />
                 </div>
                 <ul class="thread-list">
                 </ul>

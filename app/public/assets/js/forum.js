@@ -9,6 +9,7 @@ document.addEventListener("DOMContentLoaded", () => {
     const postButton = document.getElementById("postButton");
     const newThreadForm = document.getElementById("newThreadForm");
     const threadNameInput = document.getElementById("threadName");
+    const searchbar = document.getElementById("searchbar");
     let threads = [];
     let replies = [];
 
@@ -21,6 +22,24 @@ document.addEventListener("DOMContentLoaded", () => {
         sidebarOpen.classList.add("d-none");
         sidebarTogle.classList.remove("d-none");
     });
+
+    searchbar.addEventListener("input", (e) => {
+        const searchText = e.target.value.toLowerCase();
+        filterThreads(searchText);
+    });
+
+    function filterThreads(searchText) {
+        const items = document.querySelectorAll(".thread-list li");
+
+        items.forEach((item) => {
+            const threadTitle = item.textContent.toLowerCase();
+            if (threadTitle.includes(searchText)) {
+                item.style.display = "";
+            } else {
+                item.style.display = "none";
+            }
+        });
+    }
 
     async function getThreads() {
         try {
