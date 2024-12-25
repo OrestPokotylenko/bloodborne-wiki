@@ -91,7 +91,7 @@ body {
 }
 
 .thread-title {
-    margin-bottom: 10px;
+    margin: 15px;
 }
 
 .message-area {
@@ -118,7 +118,7 @@ body {
     padding: 5px;
     border: none;
     border-radius: 5px;
-    margin-bottom: 5px;
+    margin: 5px 10px;
     resize: none;
 }
 
@@ -139,4 +139,8 @@ body {
 .post-button {
     height: 50px;
     margin: 0;
+}
+
+.create-thread-button {
+    width: 230px;
 }

@@ -21,4 +21,9 @@ class ThreadController {
 
         return $threadDTOs;
     }
+
+    public function addThread($userId, $title) {
+        $thread = new ThreadDTO($userId, $title);
+        $this->threadModel->addThread($thread);
+    }
 }

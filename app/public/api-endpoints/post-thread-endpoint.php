@@ -1,6 +1,6 @@
 <?php
 
-require_once __DIR__ . '/../controllers/ReplyController.php';
+require_once(__DIR__ . '/../controllers/ThreadController.php');
 
 header('Content-Type: application/json');
 
@@ -10,16 +10,15 @@ try {
     }
 
     $data = json_decode(file_get_contents('php://input'), true);
-    $threadId = $data['threadId'];
-    $content = $data['content'];
+    $title = $data['title'];
 
-    if (!$threadId || !$content) {
+    if (!$title) {
         echo json_encode(['success' => false, 'message' => 'values cannot be empty']);
         exit();
     }
 
-    $replyController = new ReplyController();
-    $replyController->addReply($threadId, $_SESSION['user']->userId, $content);
+    $threadController = new ThreadController();
+    $threadController->addThread($_SESSION['user']->userId, $title);
 
     echo json_encode(['success' => true]);
 } catch (Exception $e) {

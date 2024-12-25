@@ -11,3 +11,7 @@ Route::add('/api/get-threads', function () {
 Route::add('/api/post-reply', function () {
     require(__DIR__ . "/../api-endpoints/post-reply-endpoint.php");
 }, 'post');
+
+Route::add('/api/post-thread', function () {
+    require(__DIR__ . "/../api-endpoints/post-thread-endpoint.php");
+}, 'post');

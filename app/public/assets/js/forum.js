@@ -7,6 +7,8 @@ document.addEventListener("DOMContentLoaded", () => {
     const messageArea = document.getElementById("messages");
     const replyInput = document.getElementById("replyInput");
     const postButton = document.getElementById("postButton");
+    const newThreadForm = document.getElementById("newThreadForm");
+    const threadNameInput = document.getElementById("threadName");
     let threads = [];
     let replies = [];
 
@@ -61,7 +63,6 @@ document.addEventListener("DOMContentLoaded", () => {
         });
     }
 
-    // Load thread messages
     async function loadThread(threads, index) {
         messageArea.innerHTML = "";
         const thread = threads[index];
@@ -103,13 +104,13 @@ document.addEventListener("DOMContentLoaded", () => {
 
         const index = replyInput.dataset.threadIndex;
         const content = replyInput.value.trim();
-    
+
         if (index !== undefined && content) {
             const msgDiv = document.createElement("div");
             msgDiv.textContent = content;
             msgDiv.classList.add("message");
             messageArea.appendChild(msgDiv);
-    
+
             try {
                 const response = await fetch("/api/post-reply", {
                     method: "POST",
@@ -122,11 +123,11 @@ document.addEventListener("DOMContentLoaded", () => {
                         content: content
                     }),
                 });
-    
+
                 if (!response.ok) {
                     throw new Error(`HTTP error! status: ${response.status}`);
                 }
-    
+
                 const result = await response.json();
 
             } catch (error) {
@@ -134,6 +135,33 @@ document.addEventListener("DOMContentLoaded", () => {
             }
 
             replyInput.value = "";
+        }
+    });
+
+    newThreadForm.addEventListener("submit", async (event) => {
+        event.preventDefault();
+
+        const title = threadNameInput.value.trim();
+
+        try {
+            const response = await fetch('/api/post-thread', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({ title })
+            });
+
+            if (!response.ok) {
+                throw new Error(`HTTP error! status: ${response.status}`);
+            }
+
+            const modal = bootstrap.Modal.getInstance(document.getElementById('newThreadModal'));
+            modal.hide();
+            location.reload();
+        } catch (error) {
+            console.error("Error creating thread:", error);
+            alert("Something went wrong. Please try again.");
         }
     });
 
