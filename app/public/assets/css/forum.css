@@ -144,3 +144,14 @@ body {
 .create-thread-button {
     width: 230px;
 }
+
+.reply-to {
+    margin-bottom: 10px;
+    padding: 5px 10px;
+    border-left: 4px solid #ff6b6b; /* Highlight color */
+    background-color: #343a40; /* Match your theme */
+    color: #fff;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}

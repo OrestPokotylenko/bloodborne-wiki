@@ -22,6 +22,10 @@
             <div id="messages" class="message-area">
             </div>
             <div class="reply-box">
+                <div id="replyTo" class="reply-to d-none">
+                    <span id="replyToMessage"></span>
+                    <button id="unattachButton" class="btn btn-sm btn-outline-danger ms-2">Unattach</button>
+                </div>
                 <textarea id="replyInput" rows="3" placeholder="Write a reply..."></textarea>
                 <button id="postButton" class="post-button">Post</button>
             </div>
@@ -39,7 +43,7 @@
             <div class="modal-body">
                 <form id="newThreadForm">
                     <div class="mb-3">
-                        <input type="text" id="threadName" placeholder="Enter a title" required/>
+                        <input type="text" id="threadName" placeholder="Enter a title" required />
                     </div>
                     <div class="d-flex justify-content-center">
                         <button type="submit" class="create-thread-button">Create Thread</button>

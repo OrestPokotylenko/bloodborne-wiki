@@ -20,15 +20,15 @@ class ReplyController {
         $replies = $this->replyModel->getReplies($threadId);
         $replyDTOs = array();
         foreach ($replies as $reply) {
-            $replyDTO = new ReplyDTO($reply['thread_id'], $reply['user_id'], $reply['reply_text'], $reply['reply_id'], TimeController::getTimeByTimeZone($reply['reply_date']));
+            $replyDTO = new ReplyDTO($reply['thread_id'], $reply['user_id'], $reply['reply_text'], $reply['parent_reply_id'], $reply['reply_id'], TimeController::getTimeByTimeZone($reply['reply_date']));
             array_push($replyDTOs, $replyDTO);
         }
 
         return $replyDTOs;
     }
 
-    public function addReply($threadId, $userId, $content) {
-        $reply = new ReplyDTO($threadId, $userId, $content);
+    public function addReply($threadId, $userId, $content, $parentReplyId = null) {
+        $reply = new ReplyDTO($threadId, $userId, $content, $parentReplyId);
         $this->replyModel->addReply($reply);
     }
 }

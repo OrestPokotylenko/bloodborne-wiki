@@ -12,7 +12,7 @@ class ReplyModel extends BaseModel {
     }
 
     public function addReply(ReplyDTO $reply): void {
-        $stmt = $this->pdo->prepare('INSERT INTO replies (thread_id, user_id, reply_text) VALUES (?, ?, ?);');
-        $stmt->execute([$reply->threadId, $reply->userId, $reply->content]);
+        $stmt = $this->pdo->prepare('INSERT INTO replies (thread_id, user_id, reply_text, parent_reply_id) VALUES (?, ?, ?, ?);');
+        $stmt->execute([$reply->threadId, $reply->userId, $reply->content, $reply->parentReplyId]);
     }
 }

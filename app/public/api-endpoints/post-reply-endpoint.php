@@ -12,6 +12,7 @@ try {
     $data = json_decode(file_get_contents('php://input'), true);
     $threadId = $data['threadId'];
     $content = $data['content'];
+    $parentReplyId = $data['parentReplyId'];
 
     if (!$threadId || !$content) {
         echo json_encode(['success' => false, 'message' => 'values cannot be empty']);
@@ -19,7 +20,7 @@ try {
     }
 
     $replyController = new ReplyController();
-    $replyController->addReply($threadId, $_SESSION['user']->userId, $content);
+    $replyController->addReply($threadId, $_SESSION['user']->userId, $content, $parentReplyId);
 
     echo json_encode(['success' => true]);
 } catch (Exception $e) {

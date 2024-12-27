@@ -10,8 +10,12 @@ document.addEventListener("DOMContentLoaded", () => {
     const newThreadForm = document.getElementById("newThreadForm");
     const threadNameInput = document.getElementById("threadName");
     const searchbar = document.getElementById("searchbar");
+    const replyToDiv = document.getElementById("replyTo");
+    const replyToMessage = document.getElementById("replyToMessage");
+    const unattachButton = document.getElementById("unattachButton");
     let threads = [];
     let replies = [];
+    let replyTo = null;
 
     menuToggle.addEventListener("click", () => {
         sidebarOpen.classList.remove("d-none");
@@ -21,6 +25,11 @@ document.addEventListener("DOMContentLoaded", () => {
     menuClose.addEventListener("click", () => {
         sidebarOpen.classList.add("d-none");
         sidebarTogle.classList.remove("d-none");
+    });
+
+    unattachButton.addEventListener("click", () => {
+        replyTo = null;
+        replyToDiv.classList.add("d-none");
     });
 
     searchbar.addEventListener("input", (e) => {
@@ -86,16 +95,29 @@ document.addEventListener("DOMContentLoaded", () => {
         messageArea.innerHTML = "";
         const thread = threads[index];
         document.querySelector(".thread-title").textContent = thread.title;
-
+    
         replies.length = 0;
         replies = await getReplies(thread.threadId);
+    
         replies.forEach((reply) => {
             const msgDiv = document.createElement("div");
-            msgDiv.textContent = reply.content;
             msgDiv.classList.add("message");
+            msgDiv.textContent = reply.content;
+    
+            const replyButton = document.createElement("button");
+            replyButton.textContent = "Reply";
+            replyButton.classList.add("btn", "btn-sm", "btn-outline-primary", "ms-2");
+            replyButton.addEventListener("click", () => {
+                replyTo = reply;
+                replyToMessage.textContent = `Replying to: ${reply.content}`;
+                replyToDiv.classList.remove("d-none");
+            });
+    
+            msgDiv.appendChild(replyButton);
+    
             messageArea.appendChild(msgDiv);
         });
-
+    
         replyInput.dataset.threadIndex = index;
     }
 
@@ -115,47 +137,65 @@ document.addEventListener("DOMContentLoaded", () => {
 
     postButton.addEventListener("click", async () => {
         const loggedIn = await isLoggedIn();
-
+    
         if (!loggedIn) {
             alert("You must be logged in to post a reply.");
             return;
         }
-
+    
         const index = replyInput.dataset.threadIndex;
         const content = replyInput.value.trim();
-
+    
         if (index !== undefined && content) {
             const msgDiv = document.createElement("div");
-            msgDiv.textContent = content;
             msgDiv.classList.add("message");
+            msgDiv.textContent = content;
+    
+            const replyButton = document.createElement("button");
+            replyButton.textContent = "Reply";
+            replyButton.classList.add("btn", "btn-sm", "btn-outline-primary", "ms-2");
+            replyButton.addEventListener("click", () => {
+                replyTo = { content };
+                replyToMessage.textContent = `Replying to: ${content}`;
+                replyToDiv.classList.remove("d-none");
+            });
+    
+            msgDiv.appendChild(replyButton);
+    
             messageArea.appendChild(msgDiv);
-
+    
             try {
                 const response = await fetch("/api/post-reply", {
                     method: "POST",
-                    credentials: 'same-origin',
+                    credentials: "same-origin",
                     headers: {
-                        "-ContentType": "application/json",
+                        "Content-Type": "application/json",
                     },
                     body: JSON.stringify({
                         threadId: threads[index].threadId,
-                        content: content
+                        content: content,
+                        parentReplyId: replyTo ? replyTo.replyId : null
                     }),
                 });
-
+    
                 if (!response.ok) {
                     throw new Error(`HTTP error! status: ${response.status}`);
                 }
-
+    
                 const result = await response.json();
-
+                if (!result.success) {
+                    console.error("Error saving reply:", result.message);
+                    alert("Failed to save your reply. Please try again.");
+                }
             } catch (error) {
                 console.error("Error:", error);
             }
-
+    
             replyInput.value = "";
+            replyTo = null;
+            replyToDiv.classList.add("d-none");
         }
-    });
+    });    
 
     newThreadForm.addEventListener("submit", async (event) => {
         event.preventDefault();
