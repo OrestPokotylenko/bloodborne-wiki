@@ -15,3 +15,7 @@ Route::add('/logout', function () {
 Route::add('/two-factor-login', function () {
     require(__DIR__ . "/../views/pages/two-factor-login.php");
 });
+
+Route::add('/forum', function () {
+    require(__DIR__ . "/../views/pages/forum.php");
+});

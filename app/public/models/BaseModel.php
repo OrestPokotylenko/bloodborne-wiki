@@ -1,6 +1,6 @@
 <?php
 
-require_once("../lib/env.php");
+require_once(__DIR__ . "/../lib/env.php");
 
 class BaseModel {
     protected $pdo;
