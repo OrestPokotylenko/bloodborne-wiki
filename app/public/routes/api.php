@@ -15,3 +15,7 @@ Route::add('/api/post-reply', function () {
 Route::add('/api/post-thread', function () {
     require(__DIR__ . "/../api-endpoints/post-thread-endpoint.php");
 }, 'post');
+
+Route::add('/api/post-subscription', function () {
+    require(__DIR__ . "/../api-endpoints/post-subscription-endpoint.php");
+}, 'post');
