@@ -69,3 +69,33 @@ document.addEventListener('DOMContentLoaded', () => {
         })
         .catch((error) => console.error('Error fetching session state:', error));
 });
+
+document.addEventListener('DOMContentLoaded', () => {
+    const emailSubscriptionInput = document.getElementById('emailSubscriptionInput');
+    const emailSubscriptionButton = document.getElementById('emailSubscriptionButton');
+
+    emailSubscriptionButton.addEventListener('click', async () => {
+        let email = emailSubscriptionInput.value;
+
+        try {
+            if (email) {
+                const response = await fetch('/api/post-subscription', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify({ email })
+                });
+
+                if (!response.ok) {
+                    throw new Error(`HTTP error! status: ${response.status}`);
+                }
+            } else {
+                alert('Please enter an email address to subscribe.');
+            }
+        } catch (error) {
+            console.error('Error creating subscription:', error);
+            alert('Something went wrong. Please try again.');
+        }
+    });
+});
