@@ -19,3 +19,7 @@ Route::add('/api/post-thread', function () {
 Route::add('/api/post-subscription', function () {
     require(__DIR__ . "/../api-endpoints/post-subscription-endpoint.php");
 }, 'post');
+
+Route::add('/api/get-weapons', function () {
+    require(__DIR__ . "/../api-endpoints/get-weapons-endpoint.php");
+});
