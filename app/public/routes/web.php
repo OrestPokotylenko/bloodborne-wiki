@@ -19,3 +19,11 @@ Route::add('/two-factor-login', function () {
 Route::add('/forum', function () {
     require(__DIR__ . "/../views/pages/forum.php");
 });
+
+Route::add('/weapons', function () {
+    require(__DIR__ . "/../views/pages/weapons.php");
+});
+
+Route::add('/weapons/details', function () {
+    require(__DIR__ . "/../views/pages/weapon-details.php");
+});

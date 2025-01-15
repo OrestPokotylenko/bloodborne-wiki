@@ -12,6 +12,8 @@
     <link rel="stylesheet" href="/assets/css/main.css">
     <link rel="stylesheet" href="/assets/css/login.css">
     <link rel="stylesheet" href="/assets/css/forum.css">
+    <link rel="stylesheet" href="/assets/css/weapons.css">
+    <link rel="stylesheet" href="/assets/css/weapon-details.css">
     <script src="../../assets/js/main.js"></script>
 </head>
 

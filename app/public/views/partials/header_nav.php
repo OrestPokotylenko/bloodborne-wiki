@@ -17,7 +17,7 @@
                 </ul>
             </div>
             <a type="button" class="nav-link" href="/locations">Locations</a>
-            <a type="button" class="nav-link" href="/items">Items</a>
+            <a type="button" class="nav-link" href="/weapons">Weapons</a>
             <a type="button" class="nav-link" href="/forum">Forum</a>
             <a type="button" id="loginButton" class="nav-link" href="/login">Login</a>
             <a type="button" id="logoutButton" class="nav-link d-none" href="/logout">Logout</a>

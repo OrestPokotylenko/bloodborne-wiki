@@ -1,7 +1,7 @@
 document.addEventListener('DOMContentLoaded', () => {
     const userTimezone = Intl.DateTimeFormat().resolvedOptions().timeZone;
 
-    fetch('includes/session/session-timezone.php', {
+    fetch('/includes/session/session-timezone.php', {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json',
@@ -53,7 +53,7 @@ if (isMobile) {
 }
 
 document.addEventListener('DOMContentLoaded', () => {
-    fetch('includes/session/session-loggedin.php')
+    fetch('/includes/session/session-loggedin.php')
         .then((response) => response.json())
         .then((data) => {
             const loginButton = document.getElementById('loginButton');
