@@ -23,3 +23,7 @@ Route::add('/forum', function () {
 Route::add('/weapons', function () {
     require(__DIR__ . "/../views/pages/weapons.php");
 });
+
+Route::add('/weapons/details', function () {
+    require(__DIR__ . "/../views/pages/weapon-details.php");
+});
