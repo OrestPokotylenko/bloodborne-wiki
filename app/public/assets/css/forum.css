@@ -102,10 +102,20 @@ body {
 }
 
 .message {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
     background-color: #343a40;
     border: 1.5px solid rgb(80, 16, 13);
     padding: 10px;
     margin: 5px;
+    border-radius: 5px;
+}
+
+.message-content {
+    flex: 1;
+    margin-right: 10px;
+    color: white;
 }
 
 .reply-box {

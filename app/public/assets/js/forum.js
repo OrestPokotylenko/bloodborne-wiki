@@ -102,17 +102,21 @@ document.addEventListener("DOMContentLoaded", () => {
         replies.forEach((reply) => {
             const msgDiv = document.createElement("div");
             msgDiv.classList.add("message");
-            msgDiv.textContent = reply.content;
+    
+            const msgContent = document.createElement("span");
+            msgContent.classList.add("message-content");
+            msgContent.textContent = reply.content;
     
             const replyButton = document.createElement("button");
             replyButton.textContent = "Reply";
-            replyButton.classList.add("btn", "btn-sm", "btn-outline-primary", "ms-2");
+            replyButton.classList.add("btn", "btn-sm", "btn-outline-primary");
             replyButton.addEventListener("click", () => {
                 replyTo = reply;
                 replyToMessage.textContent = `Replying to: ${reply.content}`;
                 replyToDiv.classList.remove("d-none");
             });
     
+            msgDiv.appendChild(msgContent);
             msgDiv.appendChild(replyButton);
     
             messageArea.appendChild(msgDiv);
