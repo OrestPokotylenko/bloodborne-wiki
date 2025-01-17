@@ -7,7 +7,6 @@
         </a>
         <div class="d-flex justify-content-end align-items-center gap-3">
             <a type="button" class="nav-link" href="/">Home</a>
-            <a type="button" class="nav-link" href="/lore">Lore</a>
             <div class="dropdown">
                 <a type="button" class="nav-link" href="/creatures">Creatures</a>
                 <ul class="dropdown-menu">
