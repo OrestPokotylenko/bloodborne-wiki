@@ -41,3 +41,19 @@ Route::add('/weapons', function () {
 Route::add('/weapons/details', function () {
     require(__DIR__ . "/../views/pages/weapon-details.php");
 });
+
+Route::add('/locations', function () {
+    require(__DIR__ . "/../views/pages/locations.php");
+});
+
+Route::add('/locations/details', function () {
+    require(__DIR__ . "/../views/pages/location-details.php");
+});
+
+Route::add('/bosses', function () {
+    require(__DIR__ . "/../views/pages/bosses.php");
+});
+
+Route::add('/bosses/details', function () {
+    require(__DIR__ . "/../views/pages/boss-details.php");
+});

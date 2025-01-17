@@ -1,0 +1,51 @@
+.boss-details-background {
+    background-image: url(/assets/images/bosses-background.webp);
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+    min-height: 100vh;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.boss-details-container {
+    background-color: rgba(0, 0, 0, 0.8);
+    color: #fff;
+    padding: 2rem;
+    border-radius: 10px;
+    max-width: 800px;
+    width: 90%;
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.7);
+    text-align: center;
+}
+
+.boss-details img {
+    max-width: 100%;
+    height: auto;
+    border-radius: 10px;
+    margin-bottom: 1rem;
+}
+
+.boss-details-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 1rem;
+}
+
+.boss-details-table th,
+.boss-details-table td {
+    padding: 0.5rem;
+    border: 1px solid #444;
+    text-align: left;
+}
+
+.boss-details-table th {
+    background-color: #333;
+    color: #fff;
+}
+
+.boss-details-table td {
+    background-color: #222;
+}

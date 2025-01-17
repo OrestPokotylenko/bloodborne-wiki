@@ -23,3 +23,7 @@ Route::add('/api/post-subscription', function () {
 Route::add('/api/get-weapons', function () {
     require(__DIR__ . "/../api-endpoints/get-weapons-endpoint.php");
 });
+
+Route::add('/api/get-bosses', function () {
+    require(__DIR__ . "/../api-endpoints/get-bosses-endpoint.php");
+});

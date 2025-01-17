@@ -17,13 +17,7 @@
             <h3 class="text-center mb-4">Bloodborne Wiki</h3>
             <div class="button-container">
                 <div class="image-button">
-                    <a class="button-link" href="/creatures/characters">
-                        <img class="img-fluid mb-2" src="../../assets/images/CharactersButton.webp" alt="Characters Button">
-                        <p class="text-light fs-5">Characters</p>
-                    </a>
-                </div>
-                <div class="image-button">
-                    <a class="button-link" href="/creatures/bosses">
+                    <a class="button-link" href="/bosses">
                         <img class="img-fluid mb-2" src="../../assets/images/BossesButton.webp" alt="Bosses Button">
                         <p class="text-light fs-5">Bosses</p>
                     </a>
