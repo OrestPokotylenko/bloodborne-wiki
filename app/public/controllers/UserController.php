@@ -117,4 +117,9 @@ class UserController
     {
         return !$this->userModel->checkUser($this->email, $this->username);
     }
+
+    public function resetPassword()
+    {
+        $this->userModel->resetPassword($this->email, $this->password);
+    }
 }

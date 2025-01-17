@@ -10,9 +10,9 @@ if (session_status() === PHP_SESSION_NONE) {
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $email = $_POST['email'];
 
-    $userController = new UserController('', '', $email);
+    $userController = new UserController($email, '', $email);
 
-    if ($userController->checkUser() == true) {
+    if ($userController->checkUser() == false) {
         header("Location: /login?error=usernotfound");
         exit();
     }

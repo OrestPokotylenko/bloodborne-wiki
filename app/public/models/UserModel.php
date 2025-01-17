@@ -99,4 +99,11 @@ class UserModel extends BaseModel
 
         $stmt->execute([$username, $email, $googleId, $role, $twoFA]);
     }
+
+    public function resetPassword($email, $password) {
+        $stmt = $this->pdo->prepare('UPDATE users SET password = ? WHERE email = ?;');
+        $hashedPassword = password_hash($password, PASSWORD_DEFAULT);
+
+        $stmt->execute([$hashedPassword, $email]);
+    }
 }
