@@ -7,14 +7,7 @@
         </a>
         <div class="d-flex justify-content-end align-items-center gap-3">
             <a type="button" class="nav-link" href="/">Home</a>
-            <div class="dropdown">
-                <a type="button" class="nav-link" href="/creatures">Creatures</a>
-                <ul class="dropdown-menu">
-                    <li><a href="/creatures/characters">Characters</a></li>
-                    <li><a href="/creatures/mobs">Mobs</a></li>
-                    <li><a href="/creatures/bosses">Bosses</a></li>
-                </ul>
-            </div>
+            <a type="button" class="nav-link" href="/bosses">Bosses</a>
             <a type="button" class="nav-link" href="/locations">Locations</a>
             <a type="button" class="nav-link" href="/weapons">Weapons</a>
             <a type="button" class="nav-link" href="/forum">Forum</a>
