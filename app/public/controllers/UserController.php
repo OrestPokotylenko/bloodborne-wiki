@@ -113,12 +113,13 @@ class UserController
         return true;
     }
 
-    private function checkUser(): bool
+    public function checkUser(): bool
     {
-        if (!$this->userModel->checkUser($this->email, $this->username)) {
-            return false;
-        }
+        return !$this->userModel->checkUser($this->email, $this->username);
+    }
 
-        return true;
+    public function resetPassword()
+    {
+        $this->userModel->resetPassword($this->email, $this->password);
     }
 }
