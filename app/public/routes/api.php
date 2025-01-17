@@ -27,3 +27,7 @@ Route::add('/api/get-weapons', function () {
 Route::add('/api/get-bosses', function () {
     require(__DIR__ . "/../api-endpoints/get-bosses-endpoint.php");
 });
+
+Route::add('/api/get-locations', function () {
+    require(__DIR__ . "/../api-endpoints/get-locations-endpoint.php");
+});

@@ -16,6 +16,8 @@
     <link rel="stylesheet" href="/assets/css/weapon-details.css">
     <link rel="stylesheet" href="/assets/css/bosses.css">
     <link rel="stylesheet" href="/assets/css/boss-details.css">
+    <link rel="stylesheet" href="/assets/css/locations.css">
+    <link rel="stylesheet" href="/assets/css/location-details.css">
     <script src="../../assets/js/main.js"></script>
 </head>
 

@@ -1,0 +1,63 @@
+.locations-background {
+    background-image: url(/assets/images/locations-background.webp);
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+    min-height: 100vh;
+    width: 100%;
+}
+
+.locations-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 20px;
+}
+
+.location-card {
+    background-color: #161b22;
+    border: 1px solid #30363d;
+    border-radius: 8px;
+    padding: 20px;
+    text-align: center;
+    transition: transform 0.3s, background-color 0.3s;
+}
+
+.location-card:hover {
+    transform: scale(1.05);
+    background-color: #21262d;
+}
+
+.location-card img {
+    width: 100%;
+    max-height: 300px;
+    object-fit: cover;
+    border-radius: 8px;
+}
+
+.location-name {
+    margin-top: 15px;
+    font-size: 1.4rem; 
+    color: white;
+    text-decoration: none;
+}
+
+.location-card a {
+    text-decoration: none;
+    color: inherit;
+}
+
+.location-card button {
+    margin-top: 10px;
+    padding: 12px 24px;
+    font-size: 1.2rem;
+    border: none;
+    background-color: #21262d;
+    color: white;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.location-card button:hover {
+    background-color: #30363d;
+}
