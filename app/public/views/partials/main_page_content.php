@@ -34,6 +34,12 @@
                         <p class="text-light fs-5">Weapons</p>
                     </a>
                 </div>
+                <div class="image-button">
+                    <a class="button-link" href="/forum">
+                        <img class="img-fluid mb-2" src="../../assets/images/ForumButton.webp" alt="Forum Button">
+                        <p class="text-light fs-5">Forum</p>
+                    </a>
+                </div>
             </div>
         </section>
         <section class="video-section text-light my-5">
