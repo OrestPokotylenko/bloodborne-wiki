@@ -76,6 +76,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     emailSubscriptionButton.addEventListener('click', async () => {
         let email = emailSubscriptionInput.value;
+        emailSubscriptionInput.value = '';
 
         try {
             if (email) {
