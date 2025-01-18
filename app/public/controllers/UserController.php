@@ -10,13 +10,15 @@ class UserController
     private $password;
     private $repeatPassword;
     private $userModel;
+    private $twoFaEnabled;
 
-    public function __construct($username, $password, $email = null, $repeatPassword = null)
+    public function __construct($username, $password, $email = null, $repeatPassword = null, $twoFaEnabled = 0)
     {
         $this->email = $email;
         $this->username = $username;
         $this->password = $password;
         $this->repeatPassword = $repeatPassword;
+        $this->twoFaEnabled = $twoFaEnabled;
 
         $this->userModel = new UserModel();
     }
@@ -42,12 +44,12 @@ class UserController
             exit();
         }
 
-        if ($this->checkUser() == false) {
+        if ($this->checkUser() == true) {
             header("location: /login?error=userexists");
             exit();
         }
 
-        $this->userModel->setUser($this->email, $this->username, $this->password);
+        $this->userModel->setUser($this->email, $this->username, $this->password, $this->twoFaEnabled);
     }
 
     public function getUser() {
@@ -113,8 +115,7 @@ class UserController
         return true;
     }
 
-    public function checkUser(): bool
-    {
+    public function checkUser(): bool {
         return !$this->userModel->checkUser($this->email, $this->username);
     }
 

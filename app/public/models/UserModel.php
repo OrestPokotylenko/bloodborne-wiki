@@ -6,22 +6,27 @@ require_once(__DIR__ . '/../dto/UserDTO.php');
 class UserModel extends BaseModel
 {
     public function checkUser($email, $username): bool {
-        $stmt = $this->pdo->prepare('SELECT username FROM users WHERE username = ? OR email = ?;');
-
-        if (!$stmt->execute(array($email, $username))) {
+        if (empty($email) || empty($username)) {
+            header("location: /?error=emptyfields");
+            exit();
+        }
+    
+        $stmt = $this->pdo->prepare('SELECT username FROM users WHERE email = ? OR username = ?;');
+    
+        if (!$stmt->execute([$email, $username])) {
+            error_log("Database error: " . implode(", ", $stmt->errorInfo()));
             $stmt = null;
             header("location: /?error=stmtfailed");
             exit();
         }
-
-        if ($stmt->rowCount() > 0) {
-            return false;
-        }
-
-        return true;
+    
+        $userExists = $stmt->rowCount() > 0;
+        $stmt = null;
+    
+        return !$userExists; // Returns true if no user is found
     }
 
-    public function setUser($email, $username, $password, $twoFA = 0) {
+    public function setUser($email, $username, $password, $twoFA) {
         $stmt = $this->pdo->prepare('INSERT INTO users (username, email, password, role, twoFA) VALUES (?, ?, ?, ?, ?);');
         $hashedPassword = password_hash($password, PASSWORD_DEFAULT);
         $role = 'user';

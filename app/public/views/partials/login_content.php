@@ -2,10 +2,10 @@
     <div id="loginForm" class="container position-absolute border rounded bg-dark top-50 start-50 translate-middle form-container w-auto">
         <form class="d-flex flex-column justify-content-between align-items-center login" method="post" action="../../includes/login.php">
             <div class="form-group w-75">
-                <input type="text" id="username" name="username" placeholder="Enter username or email">
+                <input type="text" id="username" name="username" placeholder="Enter username or email" required>
             </div>
             <div class="form-group w-75">
-                <input type="password" id="password" name="password" placeholder="Password">
+                <input type="password" id="password" name="password" placeholder="Password" required>
             </div>
             <div class="text-container w-50">
                 <button type="submit" name="submit">Submit</button>
@@ -20,16 +20,20 @@
     <div id="signUpForm" class="container position-absolute mt-5 mx-auto border rounded bg-dark top-50 start-50 translate-middle form-container w-auto d-none">
         <form class="d-flex flex-column justify-content-between align-items-center h-100" method="post" action="../../includes/signup.php">
             <div class="form-group w-75">
-                <input type="email" id="email" name="email" placeholder="Enter email">
+                <input type="email" id="email" name="email" placeholder="Enter email" required>
             </div>
             <div class="form-group w-75">
-                <input type="text" id="newUsername" name="username" placeholder="Enter username">
+                <input type="text" id="newUsername" name="username" placeholder="Enter username" required>
             </div>
             <div class="form-group w-75">
-                <input type="password" id="newPassword" name="password" placeholder="Password">
+                <input type="password" id="newPassword" name="password" placeholder="Password" required>
             </div>
             <div class="form-group w-75">
-                <input type="password" id="repeatPassword" name="repeatPassword" placeholder="Repeat password">
+                <input type="password" id="repeatPassword" name="repeatPassword" placeholder="Repeat password" required>
+            </div>
+            <div class="form-check">
+                <input class="form-check-input bg-dark mx-3" type="checkbox" id="2faCheckbox" name="2faCheckbox">
+                <label class="form-check-label text-white" for="2faCheckbox">Enable 2FA</label>
             </div>
             <div class="text-container w-50">
                 <button type="submit" name="submit">Submit</button>
